@@ -133,68 +133,26 @@
     window.addEventListener('dragover', (e) => e.preventDefault());
     window.addEventListener('drop', (e) => e.preventDefault());
 
-    // Logo hover effect - Matrix style text morph
+    // Logo hover effect - smooth text morph
     const logo = document.querySelector('.logo');
     const originalText = 'Sha.';
     const hoverText = logo.dataset.text;
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*';
-    let morphInterval = null;
-    let isAnimating = false;
-
-    function morphText(from, to, callback) {
-        if (isAnimating) return;
-        isAnimating = true;
-        logo.classList.add('morphing');
-
-        let iterations = 0;
-        const maxIterations = 8;
-
-        morphInterval = setInterval(() => {
-            let result = '';
-            const targetLen = to.length;
-
-            for (let i = 0; i < targetLen; i++) {
-                if (iterations >= maxIterations) {
-                    result += to[i];
-                } else if (i < iterations) {
-                    result += to[i];
-                } else {
-                    result += chars[Math.floor(Math.random() * chars.length)];
-                }
-            }
-
-            logo.textContent = result;
-            iterations++;
-
-            if (iterations > maxIterations + targetLen) {
-                clearInterval(morphInterval);
-                logo.textContent = to;
-                setTimeout(() => {
-                    logo.classList.remove('morphing');
-                    isAnimating = false;
-                    if (callback) callback();
-                }, 100);
-            }
-        }, 40);
-    }
 
     logo.addEventListener('mouseenter', () => {
-        if (!isAnimating) {
-            morphText(originalText, hoverText);
-        }
+        logo.style.opacity = '0';
+        setTimeout(() => {
+            logo.textContent = hoverText;
+            logo.classList.add('expanded');
+            logo.style.opacity = '1';
+        }, 150);
     });
 
     logo.addEventListener('mouseleave', () => {
-        if (!isAnimating) {
-            morphText(hoverText, originalText);
-        } else {
-            // Wait for current animation to finish, then morph back
-            const checkAndMorph = setInterval(() => {
-                if (!isAnimating) {
-                    clearInterval(checkAndMorph);
-                    morphText(hoverText, originalText);
-                }
-            }, 50);
-        }
+        logo.style.opacity = '0';
+        setTimeout(() => {
+            logo.textContent = originalText;
+            logo.classList.remove('expanded');
+            logo.style.opacity = '1';
+        }, 150);
     });
 })();
