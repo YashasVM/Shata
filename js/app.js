@@ -24,7 +24,9 @@
         sendModeBtn.classList.add('active');
         receiveModeBtn.classList.remove('active');
         senderView.classList.add('active');
+        senderView.classList.remove('hidden');
         receiverView.classList.remove('active');
+        receiverView.classList.add('hidden');
         Receiver.reset();
     }
 
@@ -32,7 +34,9 @@
         receiveModeBtn.classList.add('active');
         sendModeBtn.classList.remove('active');
         receiverView.classList.add('active');
+        receiverView.classList.remove('hidden');
         senderView.classList.remove('active');
+        senderView.classList.add('hidden');
         Sender.reset();
     }
 
