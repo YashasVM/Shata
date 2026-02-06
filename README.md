@@ -91,3 +91,9 @@ npx serve
 ## License
 
 MIT
+
+---
+
+## Contributors
+
+Made by [@Yashas.VM](https://github.com/YashasVM) | Co-Powered by Claude
