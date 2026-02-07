@@ -1,6 +1,6 @@
 # Sha. - P2P File Transfer
 
-P2P file transfer. No servers. No bull.
+P2P file transfer. No servers. No bullshit.
 
 ## Features
 
